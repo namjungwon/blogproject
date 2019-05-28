@@ -1,0 +1,376 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <meta charset="UTF-8">
+        <meta name="Generator" content="EditPlus®">
+        <meta name="Author" content="">
+        <meta name="Keywords" content="">
+        <meta name="Description" content="">
+        <style>
+                body {
+                font-family: Tahoma;
+              }
+              header {
+                text-align: center;
+              }
+              #calendar {
+                width: 100%;
+              }
+              #calendar a {
+                color: #ffb5af;
+                text-decoration: none;
+              }
+              #calendar ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+              }
+              #calendar li {
+                display: block;
+                float: left;
+                width: 14.342%;
+                padding: 5px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                margin-right: -1px;
+                margin-bottom: -1px;
+              }
+              #calendar ul.weekdays {
+                height: 40px;
+                background: #ffb5af;
+              }
+              #calendar ul.weekdays li {
+                text-align: center;
+                text-transform: uppercase;
+                line-height: 20px;
+                border: none !important;
+                padding: 10px 6px;
+                color: #fff;
+                font-size: 13px;
+              }
+              #calendar .days li {
+                height: 180px;
+              }
+              #calendar .days li:hover {
+                background: #d3d3d3;
+              }
+              #calendar .date {
+                text-align: center;
+                color: #ffb5af;
+                width: 20px;
+                border-radius: 50%;
+                float: right;
+              }
+              #calendar .event {
+                clear: both;
+                display: block;
+                font-size: 13px;
+                border-radius: 4px;
+                padding: 5px;
+                margin-top: 40px;
+                margin-bottom: 5px;
+                line-height: 14px;
+                background: #e4f2f2;
+                border: 1px solid #b5dbdc;
+                color: #009aaf;
+                text-decoration: none;
+              }
+              #calendar .event-desc {
+                color: #666;
+                margin: 3px 0 7px 0;
+                text-decoration: none;
+              }
+              #calendar .other-month {
+                background: #f5f5f5;
+                color: #666;
+              }
+              /* ============================
+                              Mobile Responsiveness
+                 ============================*/
+              @media (max-width: 768px) {
+                #calendar .weekdays, #calendar .other-month {
+                  display: none;
+                }
+                #calendar li {
+                  height: auto !important;
+                  border: 1px solid #ededed;
+                  width: 100%;
+                  padding: 10px;
+                  margin-bottom: -1px;
+                }
+                #calendar .date {
+                  float: none;
+                }
+              }
+              </style>
+               </head>
+    </head>
+        
+        <body>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="{%url 'home'%}">피드백</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                      
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                              <a class="nav-link" href="{%url 'calendar'%}">일정<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{%url 'cheer'%}">응원 하기</a>
+                            </li>
+                        </div>
+                      </nav>
+                <br>
+            <div class="container">
+                    <body>
+
+                            <div id="calendar-wrap">
+                                      <header>
+                                          <h1>6月</h1>
+                                      </header>
+                                      <div id="calendar">
+                                          <ul class="weekdays">
+                                              <li>日</li>
+                                              <li>月</li>
+                                              <li>火</li>
+                                              <li>水</li>
+                                              <li>木</li>
+                                              <li>金</li>
+                                              <li>土</li>
+                                          </ul>
+                                          <!-- Days from previous month -->
+                                          <ul class="days">
+                                              <li class="day other-month">
+                                                  <div class="date">26</div>                      
+                                              </li>
+                                              <li class="day other-month">
+                                                    <div class="date">27</div>                      
+                                                </li>                    
+                                              
+                                              <li class="day other-month">
+                                                  <div class="date">28</div> 
+                                                  <div class="event">
+                                                        <div class="event-desc">
+                                                            시나리오 초안 제출
+                                                        </div>
+                                                        <div class="event-time">
+                                                            9:00am to 12:00pm
+                                                        </div>
+                                                    </div>                       
+                                              </li>
+                                              <li class="day other-month">
+                                                <div class="date">29</div> 
+                                                                     
+                                            </li>
+                                            <li class="day other-month">
+                                                <div class="date">30</div>                      
+                                            </li>
+                                            <li class="day other-month">
+                                                <div class="date">31</div> 
+                                                <div class="event">
+                                                     <div class="event-desc">
+                                                        졸업비 납부 & 신청서 마감
+                                                    </div>
+                                                    <div class="event-time">
+                                                        11:59pm
+                                                    </div>
+                                                </div>                            
+                                            </li>
+                                            <li class="day">
+                                                <div class="date">1</div>                      
+                                            </li>   
+                                          </ul>
+                                              <!-- Row #2 -->
+                                          <ul class="days">
+                                            <!-- Days in current month -->
+                                              
+                                            <li class="day">
+                                                    <div class="date">2</div>                      
+                                                </li>
+                                              <li class="day">
+                                                  <div class="date">3</div> 
+                                                  <div class="event">
+                                                     <div class="event-desc">
+                                                        예심 심사 순서 선택
+                                                    </div>
+                                                    <div class="event-time">
+                                                        00:00am
+                                                    </div>
+                                                </div>                                  
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">4</div>
+                                                  <div class="event">
+                                                      <div class="event-desc">
+                                                          시나리오 중간 발표1
+                                                      </div>
+                                                      <div class="event-time">
+                                                          9:00am to 12:00pm
+                                                      </div>
+                                                  </div>                      
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">5</div>        
+                                                  <div class="event">
+                                                        <div class="event-desc">
+                                                            졸작 지원 사업 영수증 및 결과 보고서 제출 마감
+                                                        </div>
+                                                        <div class="event-time">
+                                                            11:59PM
+                                                        </div>
+                                                    </div>                    
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">6</div>                       
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">7</div>                       
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">8</div>                       
+                                              </li>
+                                              
+                                          </ul>
+                                              <!-- Row #3 -->
+                                              <ul class = "days">
+                                              <li class="day">
+                                                    <div class="date">9</div>
+                                                                          
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">10</div>  
+                                                    <div class="event">
+                                                            <div class="event-desc">
+                                                               예심 발표 자료 제출 마감
+                                                           </div>
+                                                           <div class="event-time">
+                                                               11:59pm
+                                                           </div>
+                                                       </div>                                 
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">11</div> 
+                                                    <div class="event">
+                                                            <div class="event-desc">
+                                                                시나리오 중간 발표2
+                                                            </div>
+                                                            <div class="event-time">
+                                                                9:00am to 12:00pm
+                                                            </div>
+                                                        </div>                        
+                                                </li>
+                                                <li class="day">
+                                                        <div class="date">12</div>                      
+                                                    </li>
+                                                    <li class="day">
+                                                        <div class="date">13</div>                      
+                                                    </li>
+                                                    <li class="day">
+                                                        <div class="date">14</div>
+                                                        <div class="event">
+                                                                <div class="event-desc">
+                                                                    졸작 예심
+                                                                </div>
+                                                                <div class="event-time">
+                                                                    시간 미정
+                                                                </div>
+                                                            </div>                        
+                                                    </li>
+                                                    <li class="day">
+                                                        <div class="date">15</div>                      
+                                                    </li>
+                                                </ul>
+                                        <!-- Row #4 -->
+                                          <ul class="days"> 
+                                              <li class="day">
+                                                  <div class="date">16</div>
+                                                                      
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">17</div>                      
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">18</div>                      
+                                              </li>
+                                              <li class="day">
+                                                    <div class="date">19</div>                      
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">20</div>                      
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">21</div>                      
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">22</div>                      
+                                                </li>
+                                          </ul>
+                                              <!-- Row #4 -->
+                                          <ul class="days">
+                                              
+                                              <li class="day">
+                                                  <div class="date">23</div>                      
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">24</div>
+                                                               
+                                              </li>
+                                              <li class="day">
+                                                  <div class="date">25</div>                      
+                                              </li>
+                                              <li class="day">
+                                                    <div class="date">26</div>                      
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">27</div>
+                                                                        
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">28</div>                      
+                                                </li>
+                                                <li class="day">
+                                                    <div class="date">29</div>                      
+                                                </li>
+                                          </ul>
+                                                  <!-- Row #5 -->
+                                          <ul class="days">
+                                             
+                                              <li class="day">
+                                                  <div class="date">30</div>                      
+                                              </li>
+                                              <li class="day other-month">
+                                                    <div class="date">1</div> <!-- Next Month -->                       
+                                                </li>
+                                                <li class="day other-month">
+                                                    <div class="date">2</div>                       
+                                                </li>
+                                                <li class="day other-month">
+                                                    <div class="date">3</div>                       
+                                                </li>
+                                                <li class="day other-month">
+                                                    <div class="date">4</div>                       
+                                                </li>
+                                                <li class="day other-month">
+                                                    <div class="date">5</div>                       
+                                                </li>
+                                                <li class="day other-month">
+                                                    <div class="date">6</div>                       
+                                                </li>
+                                            </ul>
+                                              
+                                         
+                                              
+                                      </div><!-- /. calendar -->
+                                  </div><!-- /. wrap -->
+                           </body>
+                          </html>
+            </div>
+                
+        </body>
+        
